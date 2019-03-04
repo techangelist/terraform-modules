@@ -3,5 +3,5 @@ resource "aws_vpc" "main" {
   instance_tenancy = "default"
   enable_dns_hostnames = "${var.EnableDnsHostNames}"
 
-  tags = "${merge(var.Tags, map("Name", var.VpcName),map("kubernetes.io/cluster/${var.ClusterName}", "shared"))}"
+  tags = "${merge(var.Tags, map("Name", var.VpcName),map("kubernetes.io/cluster/${var.K8sClusterName}", "shared"))}"
 }
