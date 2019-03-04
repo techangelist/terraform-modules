@@ -17,5 +17,5 @@ resource "aws_subnet" "public" {
   cidr_block        = "${var.PublicSubnets[count.index]}"
   availability_zone = "${element(var.AvailabilityZones, count.index )}"
 
-  tags = "${merge(var.Tags, map("Name", format("%s-public-subnet-%s", var.VpcName, element(var.AvailabilityZones, count.index))),map("kubernetes.io/cluster/${var.ClusterName}" , "shared"))}"
+  tags = "${merge(var.Tags, map("Name", format("%s-public-subnet-%s", var.VpcName, element(var.AvailabilityZones, count.index))),map("kubernetes.io/cluster/${var.K8sClusterName}" , "shared"))}"
 }

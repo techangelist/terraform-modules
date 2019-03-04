@@ -1,7 +1,7 @@
 variable "AwsRegion" {
   type = "string"
 }
-variable "ClusterName" {
+variable "K8sClusterName" {
   type    = "string"
 }
 
