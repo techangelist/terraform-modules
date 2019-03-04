@@ -4,15 +4,8 @@ variable "AwsRegion" {
 variable "K8sClusterName" {
   type    = "string"
 }
-variable "VpcStatePath" {
-  type    = "string"
-}
-variable "VpcStateRegion" {
-  type    = "string"
-}
-
-variable "VpcStateBucket" {
-  type    = "string"
+variable "VpcId" {
+  type = "string"
 }
 
 variable "MinNumberOfWokerNodes" {
