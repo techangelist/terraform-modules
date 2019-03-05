@@ -46,10 +46,10 @@ resource "aws_launch_configuration" "eks-node" {
 }
 
 resource "aws_autoscaling_group" "eks-node" {
-  desired_capacity     = "${var.MinNumberOfWokerNodes}"
+  desired_capacity     = "${var.MinNumberOfWorkerNodes}"
   launch_configuration = "${aws_launch_configuration.eks-node.id}"
-  max_size             = "${var.MaxNumberOfWokerNodes}"
-  min_size             = "${var.MinNumberOfWokerNodes}"
+  max_size             = "${var.MaxNumberOfWorkerNodes}"
+  min_size             = "${var.MinNumberOfWorkerNodes}"
   name                 = "${var.K8sClusterName}"
   vpc_zone_identifier  = ["${data.terraform_remote_state.vpc.eks-private-subnet-id}"]
 
