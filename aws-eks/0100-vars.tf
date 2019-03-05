@@ -26,6 +26,18 @@ variable "AvailabilityZones" {
   type = "list"
 }
 
+variable "InstanceType" {
+  type = "string"
+}
+
+variable "MinNumberOfWorkerNodes" {
+  type = "string"
+}
+
+variable "MaxNumberOfWorkerNodes" {
+  type = "string"
+}
+
 variable "Tags" {
   type = "map"
   description = "A map of tags to add to all resources"
