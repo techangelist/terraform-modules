@@ -1,33 +1,42 @@
 variable "AwsRegion" {
   type = "string"
 }
+
 variable "K8sClusterName" {
   type    = "string"
 }
-variable "VpcStatePath" {
-  type    = "string"
-}
-variable "VpcStateRegion" {
-  type    = "string"
-}
 
-variable "VpcStateBucket" {
+variable "VpcName" {
   type    = "string"
 }
 
-variable "MinNumberOfWokerNodes" {
+variable "VpcCidr" {
   type = "string"
 }
 
-variable "MaxNumberOfWokerNodes" {
-  type = "string"
+variable "PrivateSubnets" {
+  type = "list"
 }
 
-variable "InstanceType" {
-  type = "string"
+variable "PublicSubnets" {
+  type = "list"
+}
+
+variable "AvailabilityZones" {
+  type = "list"
+}
+
+variable "Tags" {
+  type = "map"
+  description = "A map of tags to add to all resources"
 }
 
 variable "DependsOn" {
   type = "list"
   default=[]
+}
+
+variable "EnableDnsHostNames" {
+  description = "Should be true to enable DNS hostnames in the VPC"
+  default     = false
 }
