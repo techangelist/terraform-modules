@@ -1,10 +1,17 @@
+data "aws_subnet_ids" "private" {
+  vpc_id = "${aws_vpc.main.id}"
+  tags = {
+    Tier = "Private"
+  }
+}
+
 resource "aws_eks_cluster" "eks-cluster" {
   name            = "${var.K8sClusterName}"
   role_arn        = "${aws_iam_role.eks-cluster.arn}"
 
   vpc_config {
     security_group_ids = ["${aws_security_group.eks-cluster.id}"]
-    subnet_ids         = ["${data.terraform_remote_state.vpc.eks-private-subnet-id}"]
+    subnet_ids         = ["${data.aws_subnet_ids.private}"]
   }
 
   depends_on = [
@@ -51,7 +58,7 @@ resource "aws_autoscaling_group" "eks-node" {
   max_size             = "${var.MaxNumberOfWorkerNodes}"
   min_size             = "${var.MinNumberOfWorkerNodes}"
   name                 = "${var.K8sClusterName}"
-  vpc_zone_identifier  = ["${data.terraform_remote_state.vpc.eks-private-subnet-id}"]
+  vpc_zone_identifier  = ["${data.aws_subnet_ids.private}"]
 
   tag {
     key                 = "Name"
