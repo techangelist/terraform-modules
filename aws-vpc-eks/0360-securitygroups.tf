@@ -1,7 +1,7 @@
 resource "aws_security_group" "eks-cluster" {
   name        = "${var.K8sClusterName}-cluster"
   description = "Cluster communication with worker nodes"
-  vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
+  vpc_id      = "${aws_vpc.main.id}"
 
   egress {
     from_port   = 0
@@ -18,7 +18,7 @@ resource "aws_security_group" "eks-cluster" {
 resource "aws_security_group" "eks-node" {
   name        = "${var.K8sClusterName}-node"
   description = "Security group for all nodes in the cluster"
-  vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
+  vpc_id      = "${aws_vpc.main.id}"
 
   egress {
     from_port   = 0

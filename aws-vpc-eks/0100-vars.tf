@@ -1,6 +1,7 @@
 variable "AwsRegion" {
   type = "string"
 }
+
 variable "K8sClusterName" {
   type    = "string"
 }
@@ -23,6 +24,18 @@ variable "PublicSubnets" {
 
 variable "AvailabilityZones" {
   type = "list"
+}
+
+variable "InstanceType" {
+  type = "string"
+}
+
+variable "MinNumberOfWorkerNodes" {
+  type = "string"
+}
+
+variable "MaxNumberOfWorkerNodes" {
+  type = "string"
 }
 
 variable "Tags" {
