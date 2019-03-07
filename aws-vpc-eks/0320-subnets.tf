@@ -6,7 +6,7 @@ resource "aws_subnet" "private" {
   cidr_block        = "${var.PrivateSubnets[count.index]}"
   vpc_id            = "${aws_vpc.main.id}"
 
-  tags = "${merge(var.Tags, map("Name", format("%s-private-subnet-%s", var.VpcName, element(var.AvailabilityZones, count.index))),map("kubernetes.io/role/internal-elb","1"))}"
+  tags = "${merge(var.Tags, map("Tier", "Private"), map("Name", format("%s-private-subnet-%s", var.VpcName, element(var.AvailabilityZones, count.index))),map("kubernetes.io/role/internal-elb","1"))}"
 }
 
 resource "aws_subnet" "public" {
@@ -17,5 +17,5 @@ resource "aws_subnet" "public" {
   cidr_block        = "${var.PublicSubnets[count.index]}"
   availability_zone = "${element(var.AvailabilityZones, count.index )}"
 
-  tags = "${merge(var.Tags, map("Name", format("%s-public-subnet-%s", var.VpcName, element(var.AvailabilityZones, count.index))),map("kubernetes.io/cluster/${var.K8sClusterName}" , "shared"))}"
+  tags = "${merge(var.Tags, map("Tier", "Public"), map("Name", format("%s-public-subnet-%s", var.VpcName, element(var.AvailabilityZones, count.index))),map("kubernetes.io/cluster/${var.K8sClusterName}" , "shared"))}"
 }
