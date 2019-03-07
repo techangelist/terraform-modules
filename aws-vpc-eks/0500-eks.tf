@@ -11,7 +11,7 @@ resource "aws_eks_cluster" "eks-cluster" {
 
   vpc_config {
     security_group_ids = ["${aws_security_group.eks-cluster.id}"]
-    subnet_ids         = ["${data.aws_subnet_ids.private}"]
+    subnet_ids         = ["${data.aws_subnet_ids.private.ids}"]
   }
 
   depends_on = [
@@ -58,7 +58,7 @@ resource "aws_autoscaling_group" "eks-node" {
   max_size             = "${var.MaxNumberOfWorkerNodes}"
   min_size             = "${var.MinNumberOfWorkerNodes}"
   name                 = "${var.K8sClusterName}"
-  vpc_zone_identifier  = ["${data.aws_subnet_ids.private}"]
+  vpc_zone_identifier  = ["${data.aws_subnet_ids.private.ids}"]
 
   tag {
     key                 = "Name"
